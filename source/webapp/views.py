@@ -19,6 +19,11 @@ def api_example(request, *args, **kwargs):
     response['Content-Type'] = 'application/json'
     return response
 
+def my_error(message):
+    error = JsonResponse({'error': message})
+    error.status_code = 400
+    return error
+
 
 @csrf_exempt
 def add(request, *args, **kwargs):
@@ -26,15 +31,13 @@ def add(request, *args, **kwargs):
         data = json.loads(request.body)
         a = data.get('A')
         b = data.get('B')
-        if type(a and b) is int:
+        if type(a) is int and type(b) is int:
              return JsonResponse({'answer': a + b})
         else:
-             response = JsonResponse({'error': 'User input is not number'})
-             response.status_code = 400
-             return response
+            response = my_error('User input is not number')
+            return response
     else:
-        response = JsonResponse({'error' : 'No data provided'})
-        response.status_code = 400
+        response = my_error('No data provided')
         return response
 
 
@@ -44,15 +47,13 @@ def subtract(request, *args, **kwargs):
         data = json.loads(request.body)
         a = data.get('A')
         b = data.get('B')
-        if type(a and b) is int:
+        if type(a) is int and type(b) is int:
              return JsonResponse({'answer': a - b})
         else:
-             response = JsonResponse({'error': 'User input is not number'})
-             response.status_code = 400
-             return response
+            response = my_error('User input is not number')
+            return response
     else:
-        response = JsonResponse({'error' : 'No data provided'})
-        response.status_code = 400
+        response = my_error('No data provided')
         return response
 
 
@@ -62,15 +63,13 @@ def multiply(request, *args, **kwargs):
         data = json.loads(request.body)
         a = data.get('A')
         b = data.get('B')
-        if type(a and b) is int:
+        if type(a) is int and type(b) is int:
              return JsonResponse({'answer': a * b})
         else:
-             response = JsonResponse({'error': 'User input is not number'})
-             response.status_code = 400
-             return response
+            response = my_error('User input is not number')
+            return response
     else:
-        response = JsonResponse({'error' : 'No data provided'})
-        response.status_code = 400
+        response = my_error('No data provided')
         return response
 
 
@@ -80,18 +79,15 @@ def divide(request, *args, **kwargs):
         data = json.loads(request.body)
         a = data.get('A')
         b = data.get('B')
-        if type(a and b) is int:
+        if type(a) is int and type(b) is int:
             if b == 0:
-                response = JsonResponse({'error': 'Division by zero'})
-                response.status_code = 400
+                response = my_error('Division by zero')
                 return response
             else:
                 return JsonResponse({'answer': a / b})
         else:
-             response = JsonResponse({'error': 'User input is not number'})
-             response.status_code = 400
-             return response
+            response = my_error('User input is not number')
+            return response
     else:
-        response = JsonResponse({'error' : 'No data provided'})
-        response.status_code = 400
+        response = my_error('No data provided')
         return response
