@@ -20,4 +20,38 @@ def api_example(request, *args, **kwargs):
     return response
 
 
-# Create your views here.
+@csrf_exempt
+def add(request, *args, **kwargs):
+    if request.body:
+        data = json.loads(request.body)
+        a = data.get('A')
+        b = data.get('B')
+        if type(a and b) is int:
+             return JsonResponse({'answer': a + b})
+        else:
+             response = JsonResponse({'error': 'User input is not number'})
+             response.status_code = 400
+             return response
+    else:
+        response = JsonResponse({'error' : 'No data provided'})
+        response.status_code = 400
+        return response
+
+
+@csrf_exempt
+def subtract(request, *args, **kwargs):
+    if request.body:
+        data = json.loads(request.body)
+        a = data.get('A')
+        b = data.get('B')
+        if type(a and b) is int:
+             return JsonResponse({'answer': a - b})
+        else:
+             response = JsonResponse({'error': 'User input is not number'})
+             response.status_code = 400
+             return response
+    else:
+        response = JsonResponse({'error' : 'No data provided'})
+        response.status_code = 400
+        return response
+

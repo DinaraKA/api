@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webapp.views import api_example
+from webapp.views import api_example, add, subtract
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('echo/', api_example, name='echo_api')
+    path('echo/', api_example, name='echo_api'),
+    path('add/', add, name='add'),
+    path('subtract/', subtract, name='subtract')
 ]
