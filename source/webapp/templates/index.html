@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <title>Homework68_task2</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header" style="text-align: center;">Lets do some math</h1>
+        <div>
+            <label for="input1">1st number:</label>
+            <input id="input1">
+        </div>
+        <div>
+            <label for="input2">2nd number:</label>
+            <input id="input2">
+        </div>
+        <button id="add" onclick="add()">Add</button>
+        <button id="subtract" onclick="subtract()">Subtract</button>
+        <button id="multiply" onclick="multiply()">Multiply</button>
+        <button id="divide" onclick="divide()">Divide</button>
+        <p>Result: </p>
+        <div class="answer">
+        </div>
+    </div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="{% static 'js/calculator.js' %}"></script>
+</body>
+</html>
+
+
+
+
